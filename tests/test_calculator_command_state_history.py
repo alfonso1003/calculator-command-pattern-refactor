@@ -7,22 +7,22 @@ from calculator_command_state_history.commands import (
     MultiplyCommand,
     SubtractCommand,
 )
-from calculator_command_state_history.controller import ChainCalculatorController
+from calculator_command_state_history.controller import CalculatorController
 
 
 class TestChainCalculator:
     @classmethod
     def setup_method(cls):
-        cls.calculator = ChainCalculator()
+        cls.chain_calculator = ChainCalculator()
         cls.calculator_initial_value = ChainCalculator(100)
 
-        cls.calculator_controller = ChainCalculatorController(cls.calculator)
-        cls.calculator_controller_initial_value = ChainCalculatorController(
+        cls.calculator_controller = CalculatorController(cls.chain_calculator)
+        cls.calculator_controller_initial_value = CalculatorController(
             cls.calculator_initial_value
         )
 
     def test_initialize_total(self):
-        assert self.calculator.total == 0
+        assert self.chain_calculator.total == 0
         assert self.calculator_initial_value.total == 100
 
     def test_addition(self):
@@ -77,8 +77,8 @@ class TestChainCalculator:
 class TestChainCalculatorChaining:
     @classmethod
     def setup_method(cls):
-        cls.calculator = ChainCalculator()
-        cls.calculator_controller = ChainCalculatorController(cls.calculator)
+        cls.chain_calculator = ChainCalculator()
+        cls.calculator_controller = CalculatorController(cls.chain_calculator)
 
     def test_chaining(self):
         result = (
@@ -114,11 +114,11 @@ class TestChainCalculatorChaining:
 class TestChainCalculatorUndoRedo:
     @classmethod
     def setup_method(cls):
-        cls.calculator = ChainCalculator()
+        cls.chain_calculator = ChainCalculator()
         cls.calculator_initial_value = ChainCalculator(100)
 
-        cls.calculator_controller = ChainCalculatorController(cls.calculator)
-        cls.calculator_controller_initial_value = ChainCalculatorController(
+        cls.calculator_controller = CalculatorController(cls.chain_calculator)
+        cls.calculator_controller_initial_value = CalculatorController(
             cls.calculator_initial_value
         )
 
