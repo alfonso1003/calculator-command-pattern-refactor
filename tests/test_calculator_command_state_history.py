@@ -168,7 +168,7 @@ class TestChainCalculatorUndoRedo:
         redo_result = self.calculator_controller_initial_value.redo().calculator_total
         assert redo_result == 50
 
-    def test_division_by_zero_undo(self):
+    def test_multiplication_by_zero_undo(self):
         """Can't undo and throws division by zero error! 😔"""
         self.calculator_controller_initial_value.execute(MultiplyCommand(0))
 
