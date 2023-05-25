@@ -3,6 +3,7 @@ import pytest
 from calculator_command_event_history.chain_calculator import ChainCalculator
 from calculator_command_event_history.commands import (
     AddCommand,
+    BatchCommand,
     DivideCommand,
     MultiplyCommand,
     SubtractCommand,
@@ -77,6 +78,32 @@ class TestChainCalculator:
                 DivideCommand(0)
             ).calculator_total
 
+    def test_batch(self):
+        result = self.calculator_controller.register(
+            BatchCommand(
+                [
+                    AddCommand(100),
+                    MultiplyCommand(2),
+                    SubtractCommand(50),
+                    DivideCommand(5),
+                ]
+            )
+        ).calculator_total
+        assert result == 30
+
+    def test_batch_initial_value(self):
+        result = self.calculator_controller_initial_value.register(
+            BatchCommand(
+                [
+                    AddCommand(100),
+                    MultiplyCommand(2),
+                    SubtractCommand(50),
+                    DivideCommand(5),
+                ]
+            )
+        ).calculator_total
+        assert result == 70
+
 
 class TestChainCalculatorChaining:
     @classmethod
@@ -94,7 +121,7 @@ class TestChainCalculatorChaining:
         )
         assert result == 30
 
-    def test_chaining_undo(self):
+    def test_chaining_undo_redo(self):
         result = (
             self.calculator_controller.register(AddCommand(100))
             .register(MultiplyCommand(2))
