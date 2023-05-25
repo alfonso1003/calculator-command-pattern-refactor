@@ -1,8 +1,4 @@
 """ Naive implementation """
-
-
-from __future__ import annotations
-
 from abc import ABC, abstractmethod
 
 
@@ -28,18 +24,14 @@ class Calculator(ABC):
 
 
 class ChainCalculator(Calculator):
-    def add(self, amount: float) -> ChainCalculator:
+    def add(self, amount: float) -> None:
         self.total += amount
-        return self
 
-    def subtract(self, amount: float) -> ChainCalculator:
+    def subtract(self, amount: float) -> None:
         self.total -= amount
-        return self
 
-    def multiply(self, amount: float) -> ChainCalculator:
+    def multiply(self, amount: float) -> None:
         self.total *= amount
-        return self
 
-    def divide(self, amount: float) -> ChainCalculator:
+    def divide(self, amount: float) -> None:
         self.total /= amount
-        return self
