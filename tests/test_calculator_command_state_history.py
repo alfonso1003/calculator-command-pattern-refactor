@@ -3,6 +3,7 @@ import pytest
 from calculator_command_state_history.chain_calculator import ChainCalculator
 from calculator_command_state_history.commands import (
     AddCommand,
+    BatchCommand,
     DivideCommand,
     MultiplyCommand,
     SubtractCommand,
@@ -73,6 +74,19 @@ class TestChainCalculator:
         with pytest.raises(ZeroDivisionError):
             self.calculator_controller_initial_value.execute(DivideCommand(0))
 
+    def test_batch(self):
+        result = self.calculator_controller.execute(
+            BatchCommand(
+                [
+                    AddCommand(100),
+                    MultiplyCommand(2),
+                    SubtractCommand(50),
+                    DivideCommand(5),
+                ]
+            )
+        ).calculator_total
+        assert result == 30
+
 
 class TestChainCalculatorChaining:
     @classmethod
@@ -90,7 +104,7 @@ class TestChainCalculatorChaining:
         )
         assert result == 30
 
-    def test_chaining_undo(self):
+    def test_chaining_undo_redo(self):
         result = (
             self.calculator_controller.execute(AddCommand(100))
             .execute(MultiplyCommand(2))
@@ -109,6 +123,28 @@ class TestChainCalculatorChaining:
             self.calculator_controller.redo().redo().redo().redo().calculator_total
         )
         assert redo_result == 30
+
+    def test_batch_chaining(self):
+        result = (
+            self.calculator_controller.execute(
+                BatchCommand(
+                    [
+                        AddCommand(100),
+                        MultiplyCommand(2),
+                    ]
+                )
+            )
+            .execute(
+                BatchCommand(
+                    [
+                        SubtractCommand(50),
+                        DivideCommand(5),
+                    ]
+                )
+            )
+            .calculator_total
+        )
+        assert result == 30
 
 
 class TestChainCalculatorUndoRedo:
@@ -174,3 +210,22 @@ class TestChainCalculatorUndoRedo:
 
         with pytest.raises(ZeroDivisionError):
             self.calculator_controller_initial_value.undo()
+
+    def test_batch_undo_redo(self):
+        result = self.calculator_controller.execute(
+            BatchCommand(
+                [
+                    AddCommand(100),
+                    MultiplyCommand(2),
+                    SubtractCommand(50),
+                    DivideCommand(5),
+                ]
+            )
+        ).calculator_total
+        assert result == 30
+
+        result = self.calculator_controller.undo().calculator_total
+        assert result == 0
+
+        result = self.calculator_controller.redo().calculator_total
+        assert result == 30
