@@ -4,4 +4,4 @@ from calculator_command_state_history.commands import (
     MultiplyCommand,
     SubtractCommand,
 )
-from calculator_command_state_history.controller import ChainCalculatorController
+from calculator_command_state_history.controller import CalculatorController

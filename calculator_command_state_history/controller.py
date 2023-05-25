@@ -10,18 +10,18 @@ from calculator_command_state_history.commands import CalculatorCommand
 
 
 @dataclass
-class ChainCalculatorController:
+class CalculatorController:
     calculator: Calculator
     undo_list: List[CalculatorCommand] = field(default_factory=list)
     redo_list: List[CalculatorCommand] = field(default_factory=list)
 
-    def execute(self, command: CalculatorCommand) -> ChainCalculatorController:
+    def execute(self, command: CalculatorCommand) -> CalculatorController:
         command.execute(self.calculator)
         self.undo_list.append(command)
         self.redo_list = []
         return self
 
-    def undo(self) -> ChainCalculatorController:
+    def undo(self) -> CalculatorController:
         if not self.undo_list:
             return self
         command = self.undo_list.pop()
@@ -29,7 +29,7 @@ class ChainCalculatorController:
         self.redo_list.append(command)
         return self
 
-    def redo(self) -> ChainCalculatorController:
+    def redo(self) -> CalculatorController:
         if not self.redo_list:
             return self
         command = self.redo_list.pop()
