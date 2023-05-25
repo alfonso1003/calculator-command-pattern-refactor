@@ -141,6 +141,28 @@ class TestChainCalculatorChaining:
         )
         assert redo_result == 30
 
+    def test_batch_chaining(self):
+        result = (
+            self.calculator_controller.register(
+                BatchCommand(
+                    [
+                        AddCommand(100),
+                        MultiplyCommand(2),
+                    ]
+                )
+            )
+            .register(
+                BatchCommand(
+                    [
+                        SubtractCommand(50),
+                        DivideCommand(5),
+                    ]
+                )
+            )
+            .calculator_total
+        )
+        assert result == 30
+
 
 class TestChainCalculatorUndoRedo:
     @classmethod
@@ -205,3 +227,22 @@ class TestChainCalculatorUndoRedo:
 
         result = self.calculator_controller_initial_value.undo().calculator_total
         assert result == 100
+
+    def test_batch_undo_redo(self):
+        result = self.calculator_controller.register(
+            BatchCommand(
+                [
+                    AddCommand(100),
+                    MultiplyCommand(2),
+                    SubtractCommand(50),
+                    DivideCommand(5),
+                ]
+            )
+        ).calculator_total
+        assert result == 30
+
+        result = self.calculator_controller.undo().calculator_total
+        assert result == 0
+
+        result = self.calculator_controller.redo().calculator_total
+        assert result == 30
