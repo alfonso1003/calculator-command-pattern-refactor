@@ -1,13 +1,13 @@
 import pytest
 
-from calculator_command_state.chain_calculator import ChainCalculator
-from calculator_command_state.commands import (
+from calculator_command_state_history.chain_calculator import ChainCalculator
+from calculator_command_state_history.commands import (
     AddCommand,
     DivideCommand,
     MultiplyCommand,
     SubtractCommand,
 )
-from calculator_command_state.controller import ChainCalculatorController
+from calculator_command_state_history.controller import ChainCalculatorController
 
 
 class TestChainCalculator:

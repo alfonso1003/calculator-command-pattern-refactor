@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import List, Protocol
 
-from calculator_command_state.chain_calculator import Calculator
+from calculator_command_state_history.chain_calculator import Calculator
 
 
 class CalculatorCommand(Protocol):
