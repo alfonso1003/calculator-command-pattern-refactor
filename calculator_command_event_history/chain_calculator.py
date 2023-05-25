@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 class Calculator(ABC):
     def __init__(self, total: float = 0):
         self.total = total
+        self._inital_total = total
 
     @abstractmethod
     def add(self, amount: str):
@@ -22,6 +23,10 @@ class Calculator(ABC):
     def divide(self, amount: str):
         pass
 
+    @abstractmethod
+    def reset_total(self):
+        pass
+
 
 class ChainCalculator(Calculator):
     def add(self, amount: float) -> None:
@@ -35,3 +40,6 @@ class ChainCalculator(Calculator):
 
     def divide(self, amount: float) -> None:
         self.total /= amount
+
+    def reset_total(self):
+        self.total = self._inital_total
