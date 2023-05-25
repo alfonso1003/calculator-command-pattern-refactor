@@ -47,7 +47,6 @@ class DivideCommand:
 class BatchCommand:
     commands: List[CalculatorCommand]
 
-    def execute(self, current_value: float) -> float:
+    def execute(self, calculator: Calculator) -> float:
         for command in self.commands:
-            current_value = command.execute(current_value)
-        return current_value
+            command.execute(calculator)
