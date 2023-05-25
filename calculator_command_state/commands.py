@@ -24,8 +24,8 @@ class AddCommand:
     def execute(self, calculator: Calculator) -> float:
         calculator.add(self.value)
 
-    def undo(self, current_value: float) -> float:
-        return current_value - self.value
+    def undo(self, calculator: Calculator) -> float:
+        calculator.subtract(self.value)
 
     def redo(self, calculator) -> float:
         calculator.add(self.value)
