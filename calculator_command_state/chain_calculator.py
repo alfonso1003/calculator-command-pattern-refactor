@@ -7,6 +7,9 @@ from abc import ABC, abstractmethod
 
 
 class Calculator(ABC):
+    def __init__(self, total: float = 0):
+        self.total = total
+
     @abstractmethod
     def add(self, amount: str):
         pass
@@ -25,9 +28,6 @@ class Calculator(ABC):
 
 
 class ChainCalculator(Calculator):
-    def __init__(self, total: float = 0):
-        self.total = total
-
     def add(self, amount: float) -> ChainCalculator:
         self.total += amount
         return self
