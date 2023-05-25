@@ -77,17 +77,17 @@ class DivideCommand:
 class BatchCommand:
     commands: List[CalculatorCommand]
 
-    def execute(self, current_value: float) -> float:
+    def execute(self, calculator: Calculator) -> float:
         for command in self.commands:
-            current_value = command.execute(current_value)
-        return current_value
+            command.execute(calculator)
+        return calculator
 
-    def undo(self, current_value: float) -> float:
+    def undo(self, calculator: Calculator) -> float:
         for command in reversed(self.commands):
-            current_value = command.undo(current_value)
-        return current_value
+            command.undo(calculator)
+        return calculator
 
-    def redo(self, current_value: float) -> float:
+    def redo(self, calculator: Calculator) -> float:
         for command in self.commands:
-            current_value = command.redo(current_value)
-        return current_value
+            command.redo(calculator)
+        return calculator
