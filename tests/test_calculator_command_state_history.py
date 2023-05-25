@@ -87,6 +87,19 @@ class TestChainCalculator:
         ).calculator_total
         assert result == 30
 
+    def test_batch_initial_value(self):
+        result = self.calculator_controller_initial_value.execute(
+            BatchCommand(
+                [
+                    AddCommand(100),
+                    MultiplyCommand(2),
+                    SubtractCommand(50),
+                    DivideCommand(5),
+                ]
+            )
+        ).calculator_total
+        assert result == 70
+
 
 class TestChainCalculatorChaining:
     @classmethod
