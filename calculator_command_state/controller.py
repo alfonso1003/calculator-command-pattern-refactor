@@ -36,3 +36,7 @@ class ChainCalculatorController:
         command.redo(self.calculator)
         self.undo_list.append(command)
         return self
+
+    @property
+    def calculator_total(self):
+        return self.calculator.total
