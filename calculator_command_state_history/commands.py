@@ -80,14 +80,11 @@ class BatchCommand:
     def execute(self, calculator: Calculator) -> float:
         for command in self.commands:
             command.execute(calculator)
-        return calculator
 
     def undo(self, calculator: Calculator) -> float:
         for command in reversed(self.commands):
             command.undo(calculator)
-        return calculator
 
     def redo(self, calculator: Calculator) -> float:
         for command in self.commands:
             command.redo(calculator)
-        return calculator
