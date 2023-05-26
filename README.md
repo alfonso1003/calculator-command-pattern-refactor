@@ -3,7 +3,7 @@
 I came across a coding challenge from almost a decade ago on an external drive. The interviewer asked me to make a calculator that could chain operartions. For example, I had to create something like this:
 
 ```
-$ calculator(0).add(10).multiply(4).subtract(20).divide(10) = 2
+$ calculator(0).add(10).multiply(4).subtract(20).divide(10) == 2
 >> True
 ```
 
