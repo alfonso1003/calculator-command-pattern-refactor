@@ -1,4 +1,4 @@
-""" Implement using Command Pattern with Undo/Redo via State """
+""" Implement using Command Pattern with Undo/Redo via Event History """
 
 from __future__ import annotations
 
