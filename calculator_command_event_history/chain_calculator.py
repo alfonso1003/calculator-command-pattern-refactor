@@ -1,4 +1,3 @@
-""" Naive implementation """
 from abc import ABC, abstractmethod
 
 
