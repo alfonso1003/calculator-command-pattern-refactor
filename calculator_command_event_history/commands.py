@@ -7,7 +7,7 @@ from calculator_command_event_history.chain_calculator import Calculator
 class CalculatorCommand(Protocol):
     """general protocol for calculator command"""
 
-    def execute(self, calculator: Calculator) -> float:
+    def execute(self, calculator: Calculator) -> None:
         pass
 
 
@@ -15,7 +15,7 @@ class CalculatorCommand(Protocol):
 class AddCommand:
     value: float = 0.0
 
-    def execute(self, calculator: Calculator) -> float:
+    def execute(self, calculator: Calculator) -> None:
         calculator.add(self.value)
 
 
@@ -23,7 +23,7 @@ class AddCommand:
 class SubtractCommand:
     value: float = 0.0
 
-    def execute(self, calculator: Calculator) -> float:
+    def execute(self, calculator: Calculator) -> None:
         calculator.subtract(self.value)
 
 
@@ -31,7 +31,7 @@ class SubtractCommand:
 class MultiplyCommand:
     value: float = 0.0
 
-    def execute(self, calculator: Calculator) -> float:
+    def execute(self, calculator: Calculator) -> None:
         calculator.multiply(self.value)
 
 
@@ -39,7 +39,7 @@ class MultiplyCommand:
 class DivideCommand:
     value: float = 0.0
 
-    def execute(self, calculator: Calculator) -> float:
+    def execute(self, calculator: Calculator) -> None:
         calculator.divide(self.value)
 
 
@@ -47,6 +47,6 @@ class DivideCommand:
 class BatchCommand:
     commands: List[CalculatorCommand]
 
-    def execute(self, calculator: Calculator) -> float:
+    def execute(self, calculator: Calculator) -> None:
         for command in self.commands:
             command.execute(calculator)

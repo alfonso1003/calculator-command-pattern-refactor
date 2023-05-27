@@ -7,19 +7,19 @@ class Calculator(ABC):
         self._inital_total = total
 
     @abstractmethod
-    def add(self, amount: str):
+    def add(self, amount: float):
         pass
 
     @abstractmethod
-    def subtract(self, amount: str):
+    def subtract(self, amount: float):
         pass
 
     @abstractmethod
-    def multiply(self, amount: str):
+    def multiply(self, amount: float):
         pass
 
     @abstractmethod
-    def divide(self, amount: str):
+    def divide(self, amount: float):
         pass
 
     @abstractmethod
