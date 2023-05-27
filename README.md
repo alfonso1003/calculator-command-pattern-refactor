@@ -1,10 +1,9 @@
 # calculator-command-pattern-refactor
 
-I came across a coding challenge from almost a decade ago on an external drive. The interviewer asked me to make a calculator that could chain operartions. For example, I had to create something like this:
+I came across a coding challenge from almost a decade ago on an external drive. The interviewer asked me to make a calculator that could chain operations. For example, I had to create something like this:
 
 ```
-$ calculator(0).add(10).multiply(4).subtract(20).divide(10) == 2
->> True
+calculator(0).add(10).multiply(4).subtract(20).divide(10) == 2  # True
 ```
 
 Psh! That's easy. I wrote up a small calculator class and thought I was straight on my way to six figures, equity, and ping pong tables. But not so fast... Then he asked me to extend my design to include an undo feature. Well... suffice to say I wasn't hired. I set the problem aside to figure out later, and then I forgot.
