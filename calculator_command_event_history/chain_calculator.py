@@ -7,23 +7,23 @@ class Calculator(ABC):
         self._inital_total = total
 
     @abstractmethod
-    def add(self, amount: float):
+    def add(self, amount: float) -> None:
         pass
 
     @abstractmethod
-    def subtract(self, amount: float):
+    def subtract(self, amount: float) -> None:
         pass
 
     @abstractmethod
-    def multiply(self, amount: float):
+    def multiply(self, amount: float) -> None:
         pass
 
     @abstractmethod
-    def divide(self, amount: float):
+    def divide(self, amount: float) -> None:
         pass
 
     @abstractmethod
-    def reset_total(self):
+    def reset_total(self) -> None:
         pass
 
 
@@ -40,5 +40,5 @@ class ChainCalculator(Calculator):
     def divide(self, amount: float) -> None:
         self.total /= amount
 
-    def reset_total(self):
+    def reset_total(self) -> None:
         self.total = self._inital_total
